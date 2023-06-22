@@ -34,9 +34,9 @@ public class HttpServer {
         }
 
         while (true) {
-            Socket socket = null;
-            InputStream input = null;
-            OutputStream output = null;
+            Socket socket;
+            InputStream input;
+            OutputStream output;
             try {
                 // wait for a message
                 socket = serverSocket.accept();

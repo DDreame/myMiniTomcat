@@ -9,7 +9,7 @@ import java.io.InputStream;
  * @date : 2023/6/22 16:13 
  */
 public class Request {
-    private InputStream input;
+    private final InputStream input;
     private String uri;
 
     public Request(InputStream input) {
@@ -17,7 +17,7 @@ public class Request {
     }
 
     public void parse() {
-        StringBuffer request = new StringBuffer(2048);
+        StringBuilder request = new StringBuilder(2048);
         int i;
         byte[] buffer = new byte[2048];
         try {
@@ -31,7 +31,7 @@ public class Request {
             request.append((char) buffer[j]);
         }
         // request to string
-        System.out.print(request.toString());
+        System.out.print(request);
         uri = parseUri(request.toString());
     }
     // from request get uri
