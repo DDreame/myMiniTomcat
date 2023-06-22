@@ -14,13 +14,14 @@ public class Response {
     private static final int BUFFER_SIZE = 1024;
     Request request;
     OutputStream output;
-
     public Response(OutputStream output) {
         this.output = output;
     }
-
     public void setRequest(Request request) {
         this.request = request;
+    }
+    public OutputStream getOutput() {
+        return this.output;
     }
     // send Static Resource by file name;
     public void sendStaticResource() throws IOException {

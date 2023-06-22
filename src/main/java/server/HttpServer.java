@@ -50,7 +50,16 @@ public class HttpServer {
                 // create Response object
                 Response response = new Response(output);
                 response.setRequest(request);
-                response.sendStaticResource();
+                if (request.getUri().startsWith("/servlet/")) {
+                    ServletProcessor processor = new ServletProcessor();
+                    processor.process(request, response);
+                    System.out.println("servlet processor process finished.");
+                }
+                else {
+                    StaticResourceProcessor processor = new StaticResourceProcessor();
+                    processor.process(request, response);
+                    System.out.println("static resource processor process finished.");
+                }
 
                 // Close the socket
                 socket.close();
