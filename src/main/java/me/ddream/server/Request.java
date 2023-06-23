@@ -1,4 +1,4 @@
-package server;
+package me.ddream.server;
 
 import javax.servlet.*;
 import java.io.BufferedReader;

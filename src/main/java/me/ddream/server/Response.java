@@ -1,4 +1,4 @@
-package server;
+package me.ddream.server;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.ServletResponse;

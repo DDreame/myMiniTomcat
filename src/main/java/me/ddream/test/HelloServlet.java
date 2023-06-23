@@ -1,7 +1,4 @@
-package test;
-
-import server.Request;
-import server.Response;
+package me.ddream.test;
 
 import javax.servlet.*;
 import java.io.IOException;
