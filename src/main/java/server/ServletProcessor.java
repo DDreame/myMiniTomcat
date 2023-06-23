@@ -1,8 +1,9 @@
 package server;
 
+import javax.servlet.Servlet;
 import java.io.File;
 import java.io.OutputStream;
-import java.net.MalformedURLException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.net.URLStreamHandler;
@@ -24,7 +25,7 @@ public class ServletProcessor {
         String uri = request.getUri();
         String servletName = uri.substring(uri.lastIndexOf("/") + 1);
         URLClassLoader loader = null;
-        OutputStream output = null;
+        PrintWriter writer = null;
 
         // create a URLClassLoader,规定用户servlet放在web_root下。
         URL[] urls = new URL[1];
@@ -39,16 +40,16 @@ public class ServletProcessor {
         servletClass = loader.loadClass(servletName);
 
         //写response  head
-        output = response.getOutput();
+        writer = response.getWriter();
         String head = composeResponseHead();
-        output.write(head.getBytes(StandardCharsets.UTF_8));
+        writer.println(head);
 
         //调用servlet service()
         Servlet servlet = null;
         servlet = (Servlet) servletClass.newInstance();
         servlet.service(request, response);
 
-        output.flush();
+        writer.flush();
     }
 
     private String composeResponseHead() {
